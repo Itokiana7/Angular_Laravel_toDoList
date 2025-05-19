@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class tache extends Model
 {
     use HasFactory;
+    protected $table = 'tache';
+    protected $fillable = [
+        'nom'
+    ];
 }

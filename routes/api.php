@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/getToDo', [App\Http\Controllers\api\toDoList::class, 'getToDo']);
+Route::post('/addTache', [App\Http\Controllers\api\toDoList::class, 'addTache']);
+Route::post('/editTache/{id}', [App\Http\Controllers\api\toDoList::class, 'editTache']);
+Route::delete('/deleteTache/{id}', [App\Http\Controllers\api\toDoList::class, 'deleteTache']);
