@@ -18,4 +18,12 @@ _httClient = inject(HttpClient);
   public login(login : Login) : Observable<any>{
       return this._httClient.post<any>('http://127.0.0.1:8000/api/login', login);
   }
+
+  public getAllToDo():Observable<any>{
+    return this._httClient.get<any>('http://127.0.0.1:8000/api/getToDo');
+  }
+
+  public logout(login : Login):Observable<any>{
+    return this._httClient.post<any>('http://127.0.0.1:8000/api/logout', login);
+  }
 }

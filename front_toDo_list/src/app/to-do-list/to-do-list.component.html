@@ -37,26 +37,42 @@
 </div>
 
 </div>
+    
 
-<!-- From Uiverse.io by Rodrypaladin --> 
- <div class="container">
-    <div class="card">
-  <div class="card__title">table</div>
-    <div class="card__data">
-        <div class="card__right">
-        <div class="item">id</div>
-        <div class="item">name</div>
-        <div class="item">date</div>
-        <div class="item">active</div>
-        </div>
-        <div class="card__left">
-        <div class="item">int</div>
-        <div class="item">varchar</div>
-        <div class="item">datetime</div>
-        <div class="item">boolean</div>
-        </div>
-    </div>
+<div class="relative overflow-x-auto mx-60">
+    <table class="w-full flex-row text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3 rounded-s-lg">
+                    todo name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todo of listToDo" class="bg-white dark:bg-gray-800" >
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ todo.nom }}
+                </th>
+                <td class="px-6 py-4">
+                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+                    <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                </td>
+            </tr>
+            
+        </tbody>
+        <tfoot>
+            <tr class="font-semibold text-gray-900 dark:text-white">
+                <th scope="row" class="px-6 py-3 text-base">Total</th>
+                <td class="px-6 py-3">{{getCount()}}</td>
+            </tr>
+        </tfoot>
+    </table>
 </div>
+<button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Deconnexion</button>
 
 
- </div>
+
+
