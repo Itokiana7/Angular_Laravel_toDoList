@@ -3,6 +3,7 @@ import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } fr
 import { DataService } from '../services/data.service';
 import { Tache } from '../interfaces/tache';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-to-do-list',
@@ -19,11 +20,12 @@ toDoForm !: FormGroup;
 listToDo : Tache[] = [];
 count !: number;
 _dataService = inject(DataService);
+_router = inject(Router)
 private NFB = inject(NonNullableFormBuilder);
 
 constructor(){
   this.toDoForm = this.NFB.group({
-    name: ['',[Validators.required,Validators.minLength(3)]],
+    nom: ['',[Validators.required,Validators.minLength(3)]],
   });
   this.getAllToDoList();
 }
@@ -42,6 +44,43 @@ getCount():number{
   return this.listToDo.length;
 }
 onAdd(){
-  
+  this._dataService.addTodo(this.toDoForm.value).subscribe({
+    next: (data) =>{
+      this.getAllToDoList();
+      console.log(data.data);
+      this.toDoForm.reset();
+    },
+
+    error: (err) =>{
+      console.log('error : ', err.message);
+    }
+
+  });
 }
+
+onDelete(id : number){
+  
+  this._dataService.deleteTodo(id).subscribe({
+    next : (data) =>{
+      this.getAllToDoList();
+    },
+    error : (err) =>{
+      console.log(err.message);
+      
+    }
+  });
+
+}
+
+  onDeconnexion(){
+    this._dataService.logout().subscribe({
+      next : (data) =>{
+        sessionStorage.removeItem('token');
+        this._router.navigate(['/login']);
+      },
+      error : (err) =>{
+        console.log("Erreur ");
+      }
+    })
+  }
 }

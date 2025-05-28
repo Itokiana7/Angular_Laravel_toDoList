@@ -29,6 +29,7 @@ constructor(){
 onLogin(){
   this._dataService.login(this.loginForm.value).subscribe({
     next : (data) => {
+      sessionStorage.setItem('token', data.token);
       console.log("Login : ", data.message);
       this._router.navigate(['/todo']);
     },
